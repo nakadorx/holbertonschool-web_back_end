@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 """holb"""
-
-
 import asyncio
 from typing import List
 
