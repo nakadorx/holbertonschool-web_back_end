@@ -12,6 +12,5 @@ task_wait_random = __import__('3-tasks').task_wait_random
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """holbd"""
     covid = (task_wait_random(max_delay) for i in range(n))
-    l = await asyncio.gather(*covid)
-    return sorted(l)
- 
+    lxt = await asyncio.gather(*covid)
+    return sorted(lxt)
