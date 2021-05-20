@@ -17,11 +17,11 @@ class LFUCache(BaseCaching):
         self.current_cache = []
 
     def put(self, key, item):
-    """[BasicCache]
+        """[BasicCache]
 
-    Args:
-        holb ([class]): [holb module]
-    """
+        Args:
+            holb ([class]): [holb module]
+        """
         if key and item:
             self.cache_data[key] = item
             if key not in self.current_cache:
@@ -35,11 +35,11 @@ class LFUCache(BaseCaching):
                 print("DISCARD: {}".format(discarded))
 
     def get(self, key):
-    """[BasicCache]
+        """[BasicCache]
 
-    Args:
-        holb ([class]): [holb module]
-    """
+        Args:
+            holb ([class]): [holb module]
+        """
         if key and key in self.cache_data:
             self.current_cache.append(
                 self.current_cache.pop(self.current_cache.index(key)))

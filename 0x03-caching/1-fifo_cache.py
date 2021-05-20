@@ -11,20 +11,20 @@ class FIFOCache(BaseCaching):
         holb ([class]): [holb module]
     """
     def __init__(self):
-    """[BasicCache]
+        """[BasicCache]
 
-    Args:
-        holb ([class]): [holb module]
-    """
+        Args:
+            holb ([class]): [holb module]
+        """
         super().__init__()
         self.current_cache = []
 
     def put(self, key, item):
-    """[BasicCache]
+        """[BasicCache]
 
-    Args:
-        holb ([class]): [holb module]
-    """
+        Args:
+            holb ([class]): [holb module]
+        """
         if key and item:
             self.cache_data[key] = item
             if key not in self.current_cache:
@@ -35,9 +35,9 @@ class FIFOCache(BaseCaching):
                 print("DISCARD: {}".format(discarded))
 
     def get(self, key):
-    """[BasicCache]
+        """[BasicCache]
 
-    Args:
-        holb ([class]): [holb module]
-    """
+        Args:
+            holb ([class]): [holb module]
+        """
         return self.cache_data.get(key) or None
