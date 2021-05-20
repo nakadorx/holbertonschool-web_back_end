@@ -11,11 +11,11 @@ class BasicCache(BaseCaching):
         holb ([class]): [holb module]
     """
     def put(self, key, item):
-    """[BasicCache]
+        """[BasicCache]
 
-    Args:
-        holb ([class]): [holb module]
-    """
+        Args:
+            holb ([class]): [holb module]
+        """
         if key and item:
             self.cache_data[key] = item
 
