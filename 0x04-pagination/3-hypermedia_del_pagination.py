@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Deletion-resilient hypermedia pagination
+"""holb
 """
 
 import csv
@@ -9,7 +8,7 @@ from typing import List, Dict
 
 
 class Server:
-    """Server class to paginate a database of popular baby names.
+    """holb
     """
     DATA_FILE = "Popular_Baby_Names.csv"
 
@@ -18,7 +17,7 @@ class Server:
         self.__indexed_dataset = None
 
     def dataset(self) -> List[List]:
-        """Cached dataset
+        """holb
         """
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
@@ -29,7 +28,7 @@ class Server:
         return self.__dataset
 
     def indexed_dataset(self) -> Dict[int, List]:
-        """Dataset indexed by sorting position, starting at 0
+        """holb
         """
         if self.__indexed_dataset is None:
             dataset = self.dataset()
@@ -40,14 +39,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-        """[get_hyper_index]
-
-        Args:
-            index (int, optional): [index]. Defaults to None.
-            page_size (int, optional): [page size]. Defaults to 10.
-
-        Returns:
-            Dict: [result dict]
+        """holb
         """
         assert isinstance(index, int) and isinstance(page_size, int)
         assert len(self.indexed_dataset()) > index >= 0
