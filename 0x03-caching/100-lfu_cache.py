@@ -1,51 +1,68 @@
 #!/usr/bin/python3
-"""[LFUCache]
+"""
+holebrton
 """
 from base_caching import BaseCaching
 
 
 class LFUCache(BaseCaching):
-    """[LFUCache]
-
-    Args:
-        BaseCaching ([class]): [BaseCaching module]
     """
+    test
+    """
+
     def __init__(self):
-        """[initialization]
         """
+        test
+        """
+        self.usedKey = {}
+        self.timesKey = {}
+        self.time = 0
         super().__init__()
-        self.current_cache = []
 
     def put(self, key, item):
-        """[put]
-
-        Args:
-            key ([str]): [key]
-            item ([str]): [value to assign]
         """
-        if key and item:
-            self.cache_data[key] = item
-            if key not in self.current_cache:
-                self.current_cache.append(key)
+        holb
+        """
+        if key is not None and item is not None:
+            if key not in self.usedKey:
+                self.usedKey[key] = 1
             else:
-                self.current_cache.append(
-                    self.current_cache.pop(self.current_cache.index(key)))
-            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                discarded = self.current_cache.pop(0)
-                del self.cache_data[discarded]
-                print("DISCARD: {}".format(discarded))
+                self.usedKey[key] += 1
+            self.timesKey[key] = self.time
+            self.time += 1
+            self.cache_data[key] = item
+
+        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+            cpyusedKey = self.usedKey.copy()
+            del cpyusedKey[key]
+            smallest_value = min(cpyusedKey, key=cpyusedKey.get)
+            smallest_value = cpyusedKey[smallest_value]
+            sameKeyValue = {}
+            for _key, _value in cpyusedKey.items():
+                if _value == smallest_value:
+                    sameKeyValue[_key] = _value
+            if len(sameKeyValue) == 1:
+                discard_key = list(sameKeyValue.keys())[0]
+            else:
+                time_sameKeyValue = {}
+                for _key, _value in self.timesKey.items():
+                    if _key in sameKeyValue:
+                        time_sameKeyValue[_key] = _value
+
+                discard_key = min(time_sameKeyValue, key=time_sameKeyValue.get)
+            del self.cache_data[discard_key]
+            del self.usedKey[discard_key]
+            del self.timesKey[discard_key]
+
+            print("DISCARD: {}".format(discard_key))
 
     def get(self, key):
-        """[get by key]
-
-        Args:
-            key ([str]): [key]
-
-        Returns:
-            [type]: [return value or none]
         """
-        if key and key in self.cache_data:
-            self.current_cache.append(
-                self.current_cache.pop(self.current_cache.index(key)))
-            return self.cache_data.get(key)
-        return None
+        holb
+        """
+        if key is None or key not in self.cache_data:
+            return None
+        self.usedKey[key] += 1
+        self.timesKey[key] = self.time
+        self.time += 1
+        return self.cache_data[key]
