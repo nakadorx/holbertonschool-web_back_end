@@ -32,9 +32,9 @@ class LIFOCache(BaseCaching):
             else:
                 self.current_cache.append(next(reversed(key)))
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                dist = self.current_cache.pop(-2)
-                del self.cache_data[dist]
-                print("DISCARD: {}".format(dist))
+                discarded = self.current_cache.pop(-2)
+                del self.cache_data[discarded]
+                print("DISCARD: {}".format(discarded))
 
     def get(self, key):
     """[BasicCache]

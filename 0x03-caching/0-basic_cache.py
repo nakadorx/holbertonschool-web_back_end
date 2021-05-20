@@ -20,9 +20,12 @@ class BasicCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key):
-    """[BasicCache]
+        """[get]
 
-    Args:
-        holb ([class]): [holb module]
-    """
+        Args:
+            key ([str]): [key to the dict]
+
+        Returns:
+            [str / None]: [get value by key]
+        """
         return self.cache_data.get(key) or None
