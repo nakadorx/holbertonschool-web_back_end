@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""[holb]
+"""[FIFOCache]
 """
 from base_caching import BaseCaching
 
@@ -11,19 +11,17 @@ class FIFOCache(BaseCaching):
         holb ([class]): [holb module]
     """
     def __init__(self):
-        """[BasicCache]
-
-        Args:
-            holb ([class]): [holb module]
+        """[inti]
         """
         super().__init__()
         self.current_cache = []
 
     def put(self, key, item):
-        """[BasicCache]
+        """[holb]
 
         Args:
-            holb ([class]): [holb module]
+            key ([str]): [kk]
+            item ([str]): [value to assign]
         """
         if key and item:
             self.cache_data[key] = item
@@ -35,9 +33,12 @@ class FIFOCache(BaseCaching):
                 print("DISCARD: {}".format(discarded))
 
     def get(self, key):
-        """[BasicCache]
+        """[get by key]
 
         Args:
-            holb ([class]): [holb module]
+            key ([s]): [key]
+
+        Returns:
+            [t]: [0]
         """
         return self.cache_data.get(key) or None
