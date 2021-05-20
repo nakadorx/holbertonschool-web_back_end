@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-"""[holb]
+"""[LFUCache]
 """
 from base_caching import BaseCaching
 
 
 class LFUCache(BaseCaching):
-    """[BasicCache]
+    """[LFUCache]
 
     Args:
-        holb ([class]): [holb module]
+        BaseCaching ([class]): [BaseCaching module]
     """
     def __init__(self):
         """[initialization]
@@ -17,10 +17,11 @@ class LFUCache(BaseCaching):
         self.current_cache = []
 
     def put(self, key, item):
-        """[BasicCache]
+        """[put]
 
         Args:
-            holb ([class]): [holb module]
+            key ([str]): [key]
+            item ([str]): [value to assign]
         """
         if key and item:
             self.cache_data[key] = item
@@ -35,10 +36,13 @@ class LFUCache(BaseCaching):
                 print("DISCARD: {}".format(discarded))
 
     def get(self, key):
-        """[BasicCache]
+        """[get by key]
 
         Args:
-            holb ([class]): [holb module]
+            key ([str]): [key]
+
+        Returns:
+            [type]: [return value or none]
         """
         if key and key in self.cache_data:
             self.current_cache.append(

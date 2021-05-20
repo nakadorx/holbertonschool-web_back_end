@@ -1,29 +1,27 @@
 #!/usr/bin/python3
-"""[holberton]
+"""[holb]
 """
 from base_caching import BaseCaching
 
 
 class LIFOCache(BaseCaching):
-    """[BasicCache]
+    """[holb]
 
     Args:
-        holb ([class]): [holb module]
+        holb ([int]): [holb]
     """
     def __init__(self):
-        """[BasicCache]
-
-        Args:
-            holb ([class]): [holb module]
+        """[initialization]
         """
         super().__init__()
         self.current_cache = []
 
     def put(self, key, item):
-        """[BasicCache]
+        """[holb]
 
         Args:
-            holb ([class]): [holb module]
+            holb ([int]): [holb]
+            holb ([int]): [holb]
         """
         if key and item:
             self.cache_data[key] = item
@@ -37,9 +35,12 @@ class LIFOCache(BaseCaching):
                 print("DISCARD: {}".format(discarded))
 
     def get(self, key):
-        """[BasicCache]
+        """[holb]
 
         Args:
-            holb ([class]): [holb module]
+            holb ([int]): [holb]
+
+        Returns:
+            holb ([int]): [holb]
         """
         return self.cache_data.get(key) or None
