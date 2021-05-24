@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""[summary]
+"""holb
 """
 import redis
 from uuid import uuid4
@@ -8,20 +8,13 @@ from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
-    """[count how many times methods
-        of the Cache class are called]
-
-    Args:
-        method (Callable): [the method to count]
-
-    Returns:
-        Callable: [returned callable]
+    """holb
     """
     key = method.__qualname__
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """[wrapper]
+        """holb
         """
         self._redis.incr(key)
         return method(self, *args, **kwargs)
@@ -29,7 +22,7 @@ def count_calls(method: Callable) -> Callable:
 
 
 def replay(method: callable):
-    """[replay]
+    """holb
     """
     key = method.__qualname__
     inputs = "".join([key, ":inputs"])
@@ -39,14 +32,7 @@ def replay(method: callable):
 
 
 def call_history(method: Callable) -> Callable:
-    """[call_history]
-
-    Args:
-        method (Callable): [method to store
-        the history of inputs and outputs ]
-
-    Returns:
-        Callable: [callable]
+    """holb
     """
     key = method.__qualname__
     inputs = "".join([key, ":inputs"])
@@ -54,7 +40,7 @@ def call_history(method: Callable) -> Callable:
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """[wrapper]
+        """holb
         """
         self._redis.rpush(inputs, str(args))
         result = method(self, *args, **kwargs)
@@ -64,10 +50,10 @@ def call_history(method: Callable) -> Callable:
 
 
 class Cache:
-    """[Cache]
+    """holb
     """
     def __init__(self):
-        """[__init__]
+        """holb
         """
         self._redis = redis.Redis()
         self._redis.flushdb()
@@ -75,13 +61,7 @@ class Cache:
     @call_history
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
-        """[store]
-
-        Args:
-            data (Union[str, bytes, int, float]): [data]
-
-        Returns:
-            str: [returns a generated random key]
+        """holb
         """
         random_key = str(uuid4())
         self._redis.set(random_key, data)
@@ -89,14 +69,7 @@ class Cache:
 
     def get(self, key: str,
             fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
-        """[convert the data back to the desired format]
-
-        Args:
-            key (str): [key]
-            fn (Optional[Callable], optional): [Callable]. Defaults to None.
-
-        Returns:
-            Union[str, bytes, int, float]: [data returned]
+        """holb
         """
         result = self._redis.get(key)
         if fn:
@@ -104,23 +77,11 @@ class Cache:
         return result
 
     def get_str(self, data: bytes) -> str:
-        """[get_str]
-
-        Args:
-            data (bytes): [data to convert to str]
-
-        Returns:
-            str: [converted data]
+        """holb
         """
         return data.decode('utf-8')
 
     def get_int(self, data: bytes) -> int:
-        """[get_int]
-
-        Args:
-            data (bytes): [data to be converted to int]
-
-        Returns:
-            int: [converted data]
+        """holb
         """
         return int.from_bytes(data, sys.byteorder)
