@@ -1,6 +1,5 @@
 export default function createIteratorObject(report) {
   let iterable = [];
-
   iterable = {
     *[Symbol.iterator]() {
       for (const value of Object.values(report.allEmployees)) {
@@ -10,6 +9,5 @@ export default function createIteratorObject(report) {
       }
     },
   };
-
   return iterable;
 }
