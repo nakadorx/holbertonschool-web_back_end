@@ -1,5 +1,5 @@
 export default function getFullResponseFromAPI(success) {
-  const myPromise = new Promise((resolve, reject) => {
+  const res = new Promise((resolve, reject) => {
     if (success === true) {
       resolve({
         status: 200,
@@ -9,5 +9,5 @@ export default function getFullResponseFromAPI(success) {
       reject(new Error("The fake API is not working currently"));
     }
   });
-  return myPromise;
+  return res;
 }
